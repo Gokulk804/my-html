@@ -1,0 +1,81 @@
+<div class="bg">
+  <div class="card">
+    <h1>Hi my love ❤️</h1>
+
+    <p class="counter">
+      I’ve loved you for<br />
+      <span id="days">0</span> days
+    </p>
+
+    <p class="text">
+      You are my peace,<br />
+      my joy,<br />
+      my forever.
+    </p>
+
+    <p class="footer">Still choosing you. Always 💍</p>
+  </div>
+</div>
+
+
+<style>
+* {
+  font-family: "Playfair Display", serif;
+}
+
+.bg {
+  height: 100vh;
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 340px;
+  padding: 30px;
+  text-align: center;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  animation: fadeIn 2s ease;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.counter {
+  font-size: 18px;
+}
+
+.counter span {
+  font-size: 36px;
+  font-weight: bold;
+  display: block;
+  animation: pulse 2s infinite;
+}
+
+.text {
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+</style>
