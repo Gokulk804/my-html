@@ -1,81 +1,184 @@
-<div class="bg">
-  <div class="card">
-    <h1>Hi my love ❤️</h1>
 
-    <p class="counter">
-      I’ve loved you for<br />
-      <span id="days">0</span> days
-    </p>
 
-    <p class="text">
-      You are my peace,<br />
-      my joy,<br />
-      my forever.
-    </p>
-
-    <p class="footer">Still choosing you. Always 💍</p>
-  </div>
-</div>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Rajalakshmi ❤️</title>
 
 <style>
-* {
-  font-family: "Playfair Display", serif;
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    color: white;
+    text-align: center;
 }
 
-.bg {
-  height: 100vh;
-  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Container */
+.container {
+    padding: 15px;
 }
 
-.card {
-  width: 340px;
-  padding: 30px;
-  text-align: center;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  animation: fadeIn 2s ease;
-}
-
+/* Heading */
 h1 {
-  margin-bottom: 20px;
+    font-size: 2.2em;
 }
 
-.counter {
-  font-size: 18px;
+h2 {
+    font-size: 1.5em;
 }
 
-.counter span {
-  font-size: 36px;
-  font-weight: bold;
-  display: block;
-  animation: pulse 2s infinite;
+/* Slideshow */
+.slideshow {
+    width: 95%;
+    max-width: 400px;
+    margin: auto;
 }
 
-.text {
-  margin: 20px 0;
-  font-size: 16px;
+.slide {
+    width: 100%;
+    display: none;
+    border-radius: 15px;
 }
 
-.footer {
-  margin-top: 20px;
-  font-size: 14px;
-  opacity: 0.8;
+/* Typing Text */
+.typing {
+    margin-top: 20px;
+    font-size: 1.2em;
+    min-height: 80px;
+    padding: 10px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Button */
+button {
+    padding: 10px 20px;
+    border: none;
+    background: white;
+    color: #ff4e8a;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 15px;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
+/* Canvas fireworks */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
 }
-
 </style>
+</head>
+
+<body onclick="fireworks(event)">
+
+<canvas id="canvas"></canvas>
+
+<div class="container">
+    <h1>🎂 Happy Birthday My Love ❤️</h1>
+    <h2>My Dear Rajalakshmi 💕</h2>
+
+    <!-- Slideshow -->
+    <div class="slideshow">
+        <img class="slide" src="photo1.png">
+        <img class="slide" src="photo2.png">
+        <img class="slide" src="photo3.jpg">
+        <img class="slide" src="photo4.jpg">
+        <img class="slide" src="photo5.jpg">
+    </div>
+
+    <!-- Typing Letter -->
+    <div class="typing" id="typing"></div>
+
+    <button onclick="startTyping()">Read My Letter 💌</button>
+</div>
+
+<script>
+// -------- SLIDESHOW --------
+let slideIndex = 0;
+function showSlides() {
+    let slides = document.getElementsByClassName("slide");
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) slideIndex = 1;
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 2500);
+}
+showSlides();
+
+// -------- TYPING LETTER --------
+const message = "My Dear Rajalakshmi ❤️,\n\n" +
+"You are the most beautiful part of my life.\n" +
+"Every moment with you feels like a dream come true.\n" +
+"Your smile lights up my darkest days.\n\n" +
+"On your special day, I just want to say...\n" +
+"I love you more than words can express 💕\n\n" +
+"Happy Birthday My Love 🎂❤️";
+
+let i = 0;
+function startTyping() {
+    const typingDiv = document.getElementById("typing");
+    typingDiv.innerHTML = "";
+    i = 0;
+    typeWriter();
+}
+
+function typeWriter() {
+    if (i < message.length) {
+        document.getElementById("typing").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40);
+    }
+}
+
+// -------- FIREWORKS --------
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function fireworks(e) {
+    for (let i = 0; i < 30; i++) {
+        particles.push({
+            x: e.clientX,
+            y: e.clientY,
+            dx: (Math.random() - 0.5) * 5,
+            dy: (Math.random() - 0.5) * 5,
+            life: 100
+        });
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p, index) => {
+        p.x += p.dx;
+        p.y += p.dy;
+        p.life--;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
+
+        if (p.life <= 0) {
+            particles.splice(index, 1);
+        }
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
